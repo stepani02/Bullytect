@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Cyberbullying Type Classifier</title>
+    <link href="{{ url_for('static', filename='logo/try.png') }}" rel="icon">
+    <link href="{{ url_for('static', filename='logo/try.png') }}" rel="apple-touch-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container"> 
+        {% if input_text %}
+            <h1>Input Text</h1>
+            <p>{{ input_text }}</p>
+        {% endif %}   
+        <!-- Display Sentiment Score -->
+        {% if sentiment_score is not none %}
+            <h1>SENTIMENT SCORE</h1>
+            <p>Negative Score: {{ sentiment_score['neg'] }}</p>
+            <p>Positive Score: {{ sentiment_score['pos'] }}</p>
+            <p>Neutral Score: {{ sentiment_score['neu'] }}</p>
+            <p>Compound Score: {{ sentiment_score['compound'] }}</p>
+            
+            <!-- Determine and display overall sentiment -->
+            {% if sentiment_score['compound'] > 0.05 %}
+                <p>Overall Sentiment: Positive</p>
+            {% elif sentiment_score['compound'] < -0.05 %}
+                <p>Overall Sentiment: Negative</p>
+            {% else %}
+                <p>Overall Sentiment: Neutral</p>
+            {% endif %}
+        {% endif %}
+
+        <!-- Display Classification Result -->
+        {% if result %}
+            <h1>CLASSIFICATION RESULT</h1>
+            <h2>Result: {{ result }}</h2>
+        {% endif %}
+
+        <!-- Display Detected Language -->
+        {% if detected_language %}
+        <h1>Detected Language</h1>
+        <p>{{ detected_language }}</p>
+        {% endif %}
+
+<!-- Display Hashtags -->
+        {% if hashtags %}
+        <h1>Hashtags</h1>
+        {% for hashtag in hashtags %}
+        <p>#{{ hashtag }}</p>
+        {% endfor %}
+        {% endif %}
+        <a href="/">Back to Classification</a>
+    </div>
+</body>
+</html>

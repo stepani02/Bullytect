@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Cyberbullying Type Classifier</title>
+    <link href="../static/logo/try.png" rel="icon">
+    <link href="../static/logo/try.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Bullytect: Cyberbullying Classifier</h1>
+        <form method="post" action="/classify">
+            <textarea name="text_area" rows="5" cols="50" wrap="soft" placeholder="Enter your text here..."></textarea><br>
+            <button type="submit">Classify</button>
+        </form>
+        {% if result %}
+            
+            <a href="/metrics">View Results</a>
+        {% endif %}
+    </div>
+</body>
+</html>
